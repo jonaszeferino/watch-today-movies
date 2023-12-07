@@ -81,7 +81,7 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Botão Salvar clicado");
+    console.log("button save clicked");
     await insertUser();
   };
 
@@ -203,7 +203,7 @@ const Profile = () => {
       <Head>
         <title>Profile</title>
         <meta name="keywords" content="tvshow,watch,review"></meta>
-        <meta name="description" content="filmes, series,"></meta>
+        <meta name="description" content="movies, tvshows,"></meta>
       </Head>
       <ChakraProvider>
         {session ? (
@@ -249,7 +249,7 @@ const Profile = () => {
                     }}
                   >
                     <Alert
-                      message="Clique em Editar e Insira Seus Dados Abaixo"
+                      message="Click on Edit and Enter Your Data Below"
                       type="success"
                       showIcon
                       closable
@@ -446,8 +446,8 @@ const Profile = () => {
                         }}
                         style={{ width: "100%" }}
                       >
-                        <option value={userData?.gender || "Escolha o Genero"}>
-                          {userData?.gender || "Escolha o Genero"}
+                        <option value={userData?.gender || "Choose the Gender"}>
+                          {userData?.gender || "Choose the Gender"}
                         </option>
                         <option value="Masculino">Male</option>
                         <option value="Feminino">Female</option>

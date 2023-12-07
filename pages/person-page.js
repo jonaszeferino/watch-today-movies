@@ -275,7 +275,7 @@ export default function Personapi() {
                     )}
                     <br />
                     <span>
-                      {workCrew.media_type === "movie" ? "Cinema" : "Série"}
+                      {workCrew.media_type === "movie" ? "Cinema" : "Tv Show"}
                     </span>
                     <br />
 
