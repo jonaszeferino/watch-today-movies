@@ -56,7 +56,8 @@ export default function Discovery() {
   };
 
   let urlString =
-    "https://api.themoviedb.org/3/discover/movie?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&with_original_language=" +
+    // "https://api.themoviedb.org/3/discover/movie?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&with_original_language=" +
+    "https://api.themoviedb.org/3/discover/movie?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&with_original_language=" +
     searchMovieCountry +
     "&include_adult=false&include_video=false&vote_count.gte=" +
     searchVoteCount +
@@ -70,8 +71,7 @@ export default function Discovery() {
   const apiCall = (currentPage) => {
     setIsLoading(true);
     const url = urlString + "&page=" + currentPage;
-
-    console.log(url + " o que chamou");
+    console.log(url + " call");
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function Discovery() {
 
           return response.json();
         } else {
-          throw new Error("Dados Incorretos");
+          throw new Error("Wrong data");
         }
       })
       .then(
@@ -115,7 +115,7 @@ export default function Discovery() {
     <>
       <div>
         <div className={styles.top}>
-          <h3 className={styles.title}>Filmes por Língua</h3>
+          <h3 className={styles.title}>Movies By Language</h3>
           {/* <span>Escolha a língua, o ano, a quantidade de votos, e ordene os resultados</span> */}
         </div>
         <br />
