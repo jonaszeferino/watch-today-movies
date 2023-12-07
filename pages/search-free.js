@@ -29,12 +29,9 @@ import LoggedUser from "../components/LoggedUser";
 export default function Discovery() {
   const router = useRouter();
   const { query } = router.query;
-
   let [movieId, setMovieId] = useState();
   let [searchMovies, setSearchMovies] = useState([]);
-
   const [searchText, setSearchText] = useState(router.query.query || "");
-
   const { showBackToTopButton, scrollToTop } = useBackToTopButton();
 
   console.log(query);
@@ -62,7 +59,8 @@ export default function Discovery() {
       setIsLoading(true);
       setError(false);
 
-      const url = `https://api.themoviedb.org/3/search/multi?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&query=${searchText}&include_adult=false`;
+      const url = `https://api.themoviedb.org/3/search/multi?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&query=${searchText}&include_adult=false`;
+      // const url = `https://api.themoviedb.org/3/search/multi?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&query=${searchText}&include_adult=false`;
 
       fetch(url, {
         headers: new Headers({
@@ -74,7 +72,7 @@ export default function Discovery() {
             setError(false);
             return response.json();
           } else {
-            throw new Error("Dados Incorretos");
+            throw new Error("Wrong Data");
           }
         })
         .then((result) => {
@@ -121,45 +119,47 @@ export default function Discovery() {
     <>
       <Head>
         <title>Busca Livre</title>
-        <meta name="keywords" content="movies,watch,review,series,filmes"></meta>
-        <meta name="description" content="encontre filmes e series"></meta>
+        <meta
+          name="keywords"
+          content="movies,watch,review,series,movies"
+        ></meta>
+        <meta name="description" content="find movies and tvshows"></meta>
       </Head>
 
       <br />
       <div>
         <LoggedUser />
-
         <div className={styles.top}>
-          <h3 className={styles.title}> Busca Livre</h3>
+          <h3 className={styles.title}>Search</h3>
         </div>
         <br />
         <ChakraProvider>
           <Center>
             <HStack spacing={6}>
-              <Tooltip label="Habilita/Desabilita Filmes">
+              <Tooltip label="Enable/Disable Movies">
                 <Button
                   colorScheme={showMovies ? "blue" : "gray"}
                   onClick={handleMoviesClick}
                 >
-                  Filmes
+                  Movies
                 </Button>
               </Tooltip>
 
-              <Tooltip label="Habilita/Desabilita Séries">
+              <Tooltip label="Enable/Disable TvShows">
                 <Button
                   colorScheme={showTvShows ? "green" : "gray"}
                   onClick={handleTvShowsClick}
                 >
-                  Séries
+                  TvShows
                 </Button>
               </Tooltip>
 
-              <Tooltip label="Habilita/Desabilita Pessoas">
+              <Tooltip label="Enable/Disable People">
                 <Button
                   colorScheme={showPerson ? "yellow" : "gray"}
                   onClick={handlePersonClick}
                 >
-                  Pessoas
+                  People
                 </Button>
               </Tooltip>
             </HStack>
@@ -169,7 +169,7 @@ export default function Discovery() {
               <br />
 
               <Text>
-                Termo de Busca: <strong>{searchText}</strong>
+                Search Term: <strong>{searchText}</strong>
               </Text>
               <br />
 
@@ -183,7 +183,7 @@ export default function Discovery() {
         </ChakraProvider>
 
         {isError === true ? (
-          <ErrorPage message={`Verifique as Credenciais`}></ErrorPage>
+          <ErrorPage message={`Check the Credentials`}></ErrorPage>
         ) : (
           <div className={styles.grid}>
             {searchMovies.map((search) => (
@@ -205,7 +205,7 @@ export default function Discovery() {
                 <br />
                 {showPerson && search.media_type === "person" ? (
                   <span>
-                    Posição:{" "}
+                    Department{" "}
                     <TranslateProfile
                       text={search.known_for_department}
                       language={"pt"}
@@ -314,7 +314,7 @@ export default function Discovery() {
                       className={styles.button}
                       style={{ backgroundColor: "#ebc94a", color: "white" }}
                     >
-                      Detalhes
+                      Details
                     </a>
                   </Link>
                 ) : null}
@@ -330,7 +330,7 @@ export default function Discovery() {
                       className={styles.button}
                       style={{ backgroundColor: "#3182ce", color: "white" }}
                     >
-                      Detalhes
+                      Details
                     </a>
                   </Link>
                 ) : null}
@@ -346,7 +346,7 @@ export default function Discovery() {
                       className={styles.button}
                       style={{ backgroundColor: "#37a169", color: "white" }}
                     >
-                      Detalhes
+                      Details
                     </a>
                   </Link>
                 ) : null}
@@ -368,7 +368,7 @@ export default function Discovery() {
             disabled={page <= 1}
             className={styles.button}
           >
-            Anterior
+            Back
           </button>
           <span className={styles.button}>
             {currentPage} / {totalPages}
@@ -378,12 +378,12 @@ export default function Discovery() {
             disabled={page >= totalPages}
             className={styles.button}
           >
-            Próxima
+            Next
           </button>
           <br />
           <br />
           <span className={styles.spantext}>
-            Total Resultados: {totalResults}
+            Totals: {totalResults}
           </span>{" "}
         </span>
         {showBackToTopButton && <BackToTopButton onClick={scrollToTop} />}
