@@ -67,7 +67,8 @@ export default function Movieapi() {
     setIsRatingSubmitted(false);
     setStarValue(0);
 
-    const url = `https://api.themoviedb.org/3/movie/${randomMovieId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/movie/${randomMovieId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
+    // const url = `https://api.themoviedb.org/3/movie/${randomMovieId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
 
     fetch(url)
       .then((response) => {
@@ -152,7 +153,7 @@ export default function Movieapi() {
   return (
     <>
       <Head>
-        <title>O que Ver Hoje?</title>
+        <title>What to Watch Today?</title>
         <meta name="keywords" content="movies,watch,review"></meta>
         <meta
           name="description"
@@ -165,9 +166,10 @@ export default function Movieapi() {
           <ChakraProvider>
             <Box maxW="32rem">
               <div className={styles.top}>
-                <h3 className={styles.title}>O Que Ver Hoje?</h3>
+                <h3 className={styles.title}>What to Watch Today?</h3>
                 <span>
-                  Clique e veja as possibilidades até que um seja do seu agrado!
+                  Click and explore the possibilities until you find one that
+                  suits your taste!
                 </span>
               </div>
 
@@ -180,7 +182,7 @@ export default function Movieapi() {
                 mt="24px"
                 onClick={apiCall}
               >
-                Verificar
+                Go
               </Button>
             </Box>
           </ChakraProvider>
@@ -188,7 +190,7 @@ export default function Movieapi() {
         {isLoading ? <Progress size="xs" isIndeterminate /> : null}
 
         {isError === true ? (
-          <ErrorPage message={`- Filme Deletado`}></ErrorPage>
+          <ErrorPage message={`- Deleted Movie`}></ErrorPage>
         ) : (
           <div>
             {movieData.adult === false ? (
@@ -257,7 +259,7 @@ export default function Movieapi() {
                       <TableContainer>
                         <Table size="sm">
                           <Thead>
-                            <Tr>
+                            {/* <Tr>
                               <Td
                                 style={{
                                   fontFamily: "Helvetica Neue, sans-serif",
@@ -272,7 +274,7 @@ export default function Movieapi() {
                               >
                                 {movieData.portugueseTitle}
                               </Td>
-                            </Tr>
+                            </Tr> */}
                           </Thead>
                           <Tbody></Tbody>
                         </Table>
@@ -283,28 +285,28 @@ export default function Movieapi() {
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
-                              Nota Média
+                              Average
                             </Tab>
                             <Tab
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
-                              País de Origem
+                              Origin Country
                             </Tab>
                             <Tab
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
-                              Idioma
+                              Language
                             </Tab>
                             <Tab
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
-                              Genero
+                              Gender
                             </Tab>
                           </TabList>
                           <TabPanels>
@@ -313,19 +315,21 @@ export default function Movieapi() {
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
-                              {`${movieData.average} / ${movieData.ratingCount} votos`}
+                              {`${movieData.average} / ${movieData.ratingCount} Votes`}
                             </TabPanel>
                             <TabPanel>
-                              <TranslationComponentCountryName
+                              {/* <TranslationComponentCountryName
                                 text={movieData.country}
                                 language="pt"
-                              />
+                              /> */}
+                              {movieData.country}
                             </TabPanel>
                             <TabPanel>
-                              <TranslationComponent
+                              {/* <TranslationComponent
                                 text={movieData.originalLanguage}
                                 language="pt"
-                              />
+                              /> */}
+                              {movieData.originalLanguage}
                             </TabPanel>
                             <TabPanel
                               style={{
@@ -352,14 +356,15 @@ export default function Movieapi() {
                 )}
                 {movieData.portugueseTitle && (
                   <Link href={destino}>
-                    <a className={styles.button}>Detalhes</a>
+                    <a className={styles.button}>Details</a>
                   </Link>
                 )}
                 <br />
                 {movieData.portugueseTitle && (
                   <span>
                     <div>
-                      <h1>Avalie Essa Dica:</h1>
+                      <h1>Rate This Tip:</h1>
+
                       <Rate
                         onChange={handleRateChange}
                         value={starValue}
@@ -370,26 +375,27 @@ export default function Movieapi() {
                       <Button
                         onClick={() => {
                           handleRatingSubmit();
-                          inserLike();
+                          insertLike();
                         }}
                         disabled={isRatingSubmitted}
                       >
-                        Enviar Avaliação
+                        Submit Rating
                       </Button>
+
                       {isRatingSubmitted && (
-                        <p>Avaliação enviada com sucesso!</p>
+                        <p>Rating submitted successfully!</p>
                       )}
                     </div>
                   </span>
                 )}
                 <br />
-                {likeThanks && <span>Obrigado pela Resposta!! 😀 </span>}
+                {likeThanks && <span>Thank you for the response!! 😀 </span>}
                 {showBackToTopButton && (
                   <BackToTopButton onClick={scrollToTop} />
                 )}
                 {movieData.portugueseTitle && (
                   <button onClick={apiCall} className={styles.button}>
-                    Verificar Novo
+                    Verify New
                   </button>
                 )}
               </div>
