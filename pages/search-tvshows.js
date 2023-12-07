@@ -50,7 +50,8 @@ export default function Discovery() {
   const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
 
   let urlString =
-    "https://api.themoviedb.org/3/discover/tv?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&include_adult=false&include_video=false&vote_count.gte=" +
+    // "https://api.themoviedb.org/3/discover/tv?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&include_adult=false&include_video=false&vote_count.gte=" +
+    "https://api.themoviedb.org/3/discover/tv?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&include_adult=false&include_video=false&vote_count.gte=" +
     searchVoteCount +
     "&vote_count.lte=10000000&sort_by=" +
     searchRatingSort +
@@ -71,9 +72,7 @@ export default function Discovery() {
     }
     const url = urlString + "&page=" + currentPage;
     setIsLoading(true);
-
     console.log(url);
-
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -137,14 +136,14 @@ export default function Discovery() {
   return (
     <>
       <Head>
-        <title>Descubra Series</title>
+        <title>Find Tv Shows</title>
         <meta name="keywords" content="tvshow,watch,review"></meta>
         <meta name="description" content="filmes, series,"></meta>
       </Head>
 
       <LoggedUser />
       <div className={styles.top}>
-        <h3 className={styles.title}> Séries - Programas de TV</h3>
+        <h3 className={styles.title}> Tv Shows</h3>
       </div>
 
       <br />
@@ -170,9 +169,11 @@ export default function Discovery() {
               value={searchRatingSort}
               onChange={(event) => setSearchRatingSort(event.target.value)}
             >
-              <option value="vote_average.asc">Da Pior Para Melhor Nota</option>
+              <option value="vote_average.asc">
+                From Lowest Rating to Highest
+              </option>
               <option value="vote_average.desc">
-                Da Melhor Para Pior Nota
+                From Highest Rating to Lowest
               </option>
             </Select>
           </ChakraProvider>
@@ -183,28 +184,28 @@ export default function Discovery() {
               value={searchVoteCount}
               onChange={(event) => setSearchVoteCount(event.target.value)}
             >
-              <option value="0">Mais de 0 votos</option>
-              <option value="50">Mais de 50 votos</option>
-              <option value="100">Mais de 100 votos</option>
-              <option value="200">Mais de 200 votos</option>
-              <option value="500">Mais de 500 votos</option>
-              <option value="1000">Mais de 1000 votos</option>
-              <option value="5000">Mais de 5000 votos</option>
+              <option value="0">More than 0 votes</option>
+              <option value="50">More than 50 votes</option>
+              <option value="100">More than 100 votes</option>
+              <option value="200">More than 200 votes</option>
+              <option value="500">More than 500 votes</option>
+              <option value="1000">More than 1000 votes</option>
+              <option value="5000">More than 5000 votes</option>
             </Select>
           </ChakraProvider>
           <br />
           <ChakraProvider>
-            <FormLabel>Tipo de Série:</FormLabel>
+            <FormLabel>Tv Show Types</FormLabel>
             <Select
               value={searchTvType}
               onChange={(event) => setSearchTvType(event.target.value)}
             >
-              <option value="">Todos Tipos</option>
-              <option value="0">Documentário</option>
-              <option value="1">Notícias</option>
-              <option value="2">Mini Séries</option>
+              <option value="">All Types</option>
+              <option value="0">Documentary</option>
+              <option value="1">News</option>
+              <option value="2">Mini Series</option>
               <option value="3">Realities</option>
-              <option value="4">Roteirizadas</option>
+              <option value="4">Scripted</option>
               <option value="5">Talk Show</option>
               <option value="6">Videos</option>
             </Select>
@@ -212,7 +213,8 @@ export default function Discovery() {
           <br />
           <ChakraProvider>
             <FormControl>
-              <FormLabel>Ano Inicial e Final:</FormLabel>
+              <FormLabel>Start and End Year:</FormLabel>
+
               <Flex align="center">
                 <Select
                   value={searchMovieReleaseDateFrom}
@@ -242,18 +244,18 @@ export default function Discovery() {
           <br />
           <ChakraProvider>
             <Button size="lg" colorScheme="purple" onClick={apiCall}>
-              Verificar
+              Search
             </Button>
           </ChakraProvider>
-          <br/>
-          <br/>
+          <br />
+          <br />
         </div>
       </div>
 
       <ChakraProvider>{isLoading && <Spinner />}</ChakraProvider>
 
       {isError === true ? (
-        <ErrorPage message={`Verifique as Credenciais`}></ErrorPage>
+        <ErrorPage message={`Check Credentials`}></ErrorPage>
       ) : (
         <div className={styles.grid}>
           {searchMovies.map((search) => (
@@ -351,7 +353,7 @@ export default function Discovery() {
             disabled={page <= 1}
             className={styles.button}
           >
-            Anterior
+            Back
           </button>
           <span className={styles.button}>
             {currentPage} / {totalPages}
@@ -361,12 +363,12 @@ export default function Discovery() {
             disabled={page >= totalPages}
             className={styles.button}
           >
-            Próxima
+            Next
           </button>
           <br />
           <br />
           <span className={styles.spantext}>
-            Total Resultados: {totalResults}
+            Total Results: {totalResults}
           </span>{" "}
           {/* <Pagination
               current={page}

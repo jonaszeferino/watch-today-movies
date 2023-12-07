@@ -36,7 +36,8 @@ const MoviePage = () => {
     setMovieIdRequest(tvShowId);
     Promise.all([
       fetch(
-        `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
+        // `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
+        `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
       ),
       fetch(
         `https://api.themoviedb.org/3/tv/${tvShowId}/watch/providers?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
@@ -85,7 +86,7 @@ const MoviePage = () => {
   }, [tvShowId, movieIdRequest]);
 
   if (isLoading) {
-    return <p>Carregando dados...</p>;
+    return <p>Loading...</p>;
   }
 
   let poster = "/callback.png";
@@ -113,7 +114,8 @@ const MoviePage = () => {
     if (!tvShowId) {
       return;
     }
-    const url = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
+    // const url = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
 
     console.log(tvShowId);
     console.log(url);
@@ -140,7 +142,7 @@ const MoviePage = () => {
   return (
     <>
       <Head>
-        <title>Serie {data.originalTitle ? data.originalTitle : null}</title>
+        <title>Tv Show {data.originalTitle ? data.originalTitle : null}</title>
         <meta
           name="keywords"
           content="tvshow,watch,review, series, filmes"
@@ -205,10 +207,10 @@ const MoviePage = () => {
             <TableContainer>
               <Table size="sm">
                 <Tbody>
-                  <Tr>
+                  {/* <Tr>
                     <Td>Título em Português:</Td>
                     <Td>{data.portugueseTitle}</Td>
-                  </Tr>
+                  </Tr> */}
                   <Tr>
                     <Td>Overview:</Td>
                     <Td
@@ -217,39 +219,39 @@ const MoviePage = () => {
                         maxWidth: "480px", // Defina um valor apropriado para o tamanho máximo
                       }}
                     >
-                      {data.overview ? data.overview : "Sem infos"}
+                      {data.overview ? data.overview : "No infos"}
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td>Gêneros:</Td>
-                    <Td>{data.gender === "Soap" ? "Novela" : data.gender}</Td>
+                    <Td>Gender</Td>
+                    <Td>{data.gender === "Soap" ? "Novel" : data.gender}</Td>
                   </Tr>
                   <Tr>
-                    <Td>Nº de votos:</Td>
+                    <Td>Number of Votes:</Td>
                     <Td>{data.ratingCount}</Td>
                   </Tr>
                   <Tr>
-                    <Td>Nota:</Td>
+                    <Td>Rating:</Td>
                     <Td>{data.average}</Td>
                   </Tr>
                   <Tr>
-                    <Td>Popularidade:</Td>
+                    <Td>Popularity</Td>
                     <Td>{data.popularity}</Td>
                   </Tr>
                   <Tr>
-                    <Td>Primeiro Episódio no Ar:</Td>
+                    <Td>First Episode On Air</Td>
                     <Td>
                       {data.firstEpisodeToAir
                         ? format(new Date(data.firstEpisodeToAir), "dd/MM/yyyy")
                         : ""}
                     </Td>
                   </Tr>
-                  <Tr>
+                  {/* <Tr>
                     <Td>Streamings Brasil:</Td>
                     <Td>{data.providersBR}</Td>
-                  </Tr>
+                  </Tr> */}
                   <Tr>
-                    <Td>Streamings EUA:</Td>
+                    <Td>Streamings USA:</Td>
                     <Td>{data.providersUS}</Td>
                   </Tr>
                 </Tbody>
@@ -259,7 +261,7 @@ const MoviePage = () => {
           <br />
 
           <button onClick={CallDataTvShows} className={styles.button}>
-            Temporadas
+            Seasons
           </button>
           <br />
         </div>
@@ -267,20 +269,20 @@ const MoviePage = () => {
       <br />
       {showStatus ? (
         <span>
-          Status da Serie:{" "}
+          Series Status:{" "}
           {status === "Returning Series"
-            ? "Em andamento"
+            ? "Ongoing"
             : status === "Ended"
-            ? "Encerrada"
+            ? "Ended"
             : status === "In Production"
-            ? "Em produção"
+            ? "In Production"
             : status === "Canceled"
-            ? "Cancelada"
+            ? "Canceled"
             : status === "Pilot"
-            ? "Em fase piloto"
+            ? "Pilot Phase"
             : status === "To Be Determined"
-            ? "A ser determinado"
-            : "Desconhecido"}
+            ? "To Be Determined"
+            : "Unknown"}
         </span>
       ) : null}
       <ChakraProvider>
@@ -292,10 +294,10 @@ const MoviePage = () => {
                   <div key={work.id} className={styles.gridItem}>
                     <br />
                     <span>
-                      T{work.season_number} - Nome: {work.name}
+                      S{work.season_number} - Name: {work.name}
                     </span>
                     <br />
-                    <span>Nº de Episódios: {work.episode_count}</span>
+                    <span>Number of Episodes: {work.episode_count}</span>
                     <br />
                     <br />
                     <Image
@@ -321,7 +323,7 @@ const MoviePage = () => {
                           },
                         }}
                       >
-                        <a className={styles.button}>Episódios</a>
+                        <a className={styles.button}>Episodes</a>
                       </Link>
                       <br />
                     </div>

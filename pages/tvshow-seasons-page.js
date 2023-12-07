@@ -30,16 +30,17 @@ const MoviePage = () => {
 
   useEffect(() => {
     const CallDataTvShowsDetails = () => {
-      const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+      const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
+      // const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
 
       fetch(url)
         .then((response) => {
           if (response.status === 200) {
             return response.json();
           } else if (response.status === 404) {
-            throw new Error("Temporada não encontrada");
+            throw new Error("Season not found");
           } else {
-            throw new Error("Ocorreu um erro ao buscar os dados");
+            throw new Error("Error");
           }
         })
         .then((result) => {
@@ -57,14 +58,14 @@ const MoviePage = () => {
     }
   }, [tvShowId, tvShowSeasonId]);
   if (isLoading) {
-    return <p>Carregando dados...</p>;
+    return <p>Loading...</p>;
   }
 
   return (
     <>
       <ChakraProvider>
         <Head>
-          <title>Series Episódios</title>
+          <title>Episodes</title>
           <meta
             name="keywords"
             content="tvshow,watch,review, series, filmes"
@@ -88,7 +89,7 @@ const MoviePage = () => {
                   >
                     <Box my="6" textAlign="center">
                       <Text fontSize="xl" fontWeight="semibold">
-                        {episode.name} - T{tvShowSeasonId} E
+                        {episode.name} - S{tvShowSeasonId} E
                         {episode.episode_number}
                       </Text>
                       <Box
@@ -119,10 +120,10 @@ const MoviePage = () => {
                         <TableContainer>
                           <Table size="sm">
                             <Tbody>
-                              <Tr>
+                              {/* <Tr>
                                 <Td>Título em Português:</Td>
                                 <Td>{episode.name}</Td>
-                              </Tr>
+                              </Tr> */}
                               <Tr>
                                 <Td>Overview:</Td>
                                 <Td
@@ -137,11 +138,11 @@ const MoviePage = () => {
                                 </Td>
                               </Tr>
                               <Tr>
-                                <Td>Nota Média:</Td>
+                                <Td>Average</Td>
                                 <Td>{episode.vote_average}</Td>
                               </Tr>
                               <Tr>
-                                <Td>Direção e Roteiro</Td>
+                                <Td>Direction & Writing</Td>
                                 <Td>
                                   {episode.crew && episode.crew.length > 0 && (
                                     <>
@@ -151,11 +152,11 @@ const MoviePage = () => {
                                         )
                                         .map((writer, index) => (
                                           <div key={`writer-${index}`}>
-                                            {TranslateProfile({
+                                            {/* {TranslateProfile({
                                               text: "Writer",
                                               language: "pt",
-                                            })}
-                                            : {writer.name}
+                                            })} :*/}
+                                            {writer.name}
                                           </div>
                                         ))}
                                       {episode.crew
@@ -164,11 +165,11 @@ const MoviePage = () => {
                                         )
                                         .map((director, index) => (
                                           <div key={`director-${index}`}>
-                                            {TranslateProfile({
+                                            {/* {TranslateProfile({
                                               text: "Director",
                                               language: "pt",
-                                            })}
-                                            : {director.name}
+                                            })} : */}
+                                            {director.name}
                                           </div>
                                         ))}
                                     </>
@@ -184,7 +185,7 @@ const MoviePage = () => {
                 ))
               ) : (
                 <Text fontSize="xl" fontWeight="semibold" textAlign="center">
-                  Nenhum episódio encontrado.
+                  None episode found
                 </Text>
               )}
             </div>

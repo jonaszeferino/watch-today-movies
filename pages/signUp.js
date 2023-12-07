@@ -27,13 +27,13 @@ export default function SignUp() {
             {session ? (
               <p>
                 <Center>
-                  Usuário: {session.user.email} <br />
+                  User: {session.user.email} <br />
                   <Button
                     onClick={() => supabase.auth.signOut()}
                     colorScheme="red"
                     size="sm"
                   >
-                    Sair
+                    Close
                   </Button>
                 </Center>
               </p>

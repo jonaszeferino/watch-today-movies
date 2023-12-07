@@ -713,7 +713,7 @@ export default function Discovery() {
               <FormLabel htmlFor="origin_country">Origin Country</FormLabel>
               <Select
                 id="origin_country"
-                placeholder="Selecione o País"
+                placeholder="Select Country"
                 value={searchFilters.with_origin_country}
                 onChange={(event) =>
                   setSearchFilters({
@@ -773,7 +773,7 @@ export default function Discovery() {
           ) : null}
         </span>
         {isError === true ? (
-          <ErrorPage message={`Verifique as Credenciais`}></ErrorPage>
+          <ErrorPage message={`Check Credentials`}></ErrorPage>
         ) : (
           <div className={styles.grid}>
             {searchMovies.map((search) => (
@@ -803,7 +803,7 @@ export default function Discovery() {
                       }}
                     >
                       <Tooltip
-                        title="Saiba Mais"
+                        title="Learn More"
                         style={{
                           color: "white",
                           borderColor: "purple",
