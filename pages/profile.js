@@ -287,7 +287,7 @@ console.log(name);
               <VStack>
                 {/* e-mail */}
                 <FormControl>
-                  <FormLabel style={{ fontWeight: "bold" }}>E-mail:</FormLabel>
+                  <FormLabel style={{ fontWeight: "bold" }}>E-mail</FormLabel>
                   <Text
                     style={{
                       width: "100%",
@@ -307,7 +307,7 @@ console.log(name);
                 <>
                   {/* Name */}
                   <FormControl>
-                    <FormLabel style={{ fontWeight: "bold" }}>Name:</FormLabel>
+                    <FormLabel style={{ fontWeight: "bold" }}>Name</FormLabel>
                     {nameEdit && (
                       <Input
                         isDisabled={nameEdit}
