@@ -335,7 +335,7 @@ console.log(name);
                   {/* Surname */}
                   <FormControl>
                     <FormLabel style={{ fontWeight: "bold" }}>
-                      Surname:
+                      Surname
                     </FormLabel>
                     {surnameEdit && (
                       <Input
@@ -395,7 +395,7 @@ console.log(name);
                   {/* Data de Nascimento */}
                   <FormControl>
                     <FormLabel style={{ fontWeight: "bold" }}>
-                      Birthdate:
+                      Birthdate
                     </FormLabel>
                     {birthDateEdit && (
                       <Input
