@@ -195,8 +195,7 @@ const Profile = () => {
       subscription?.unsubscribe();
     };
   }, []);
-
-  console.log(name);
+console.log(name);
 
   return (
     <ChakraProvider>
@@ -214,7 +213,7 @@ const Profile = () => {
               colorScheme="red"
               size="sm"
             >
-              Close
+              Sign Out
             </Button>
           </p>
         ) : null}
