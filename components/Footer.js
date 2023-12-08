@@ -18,7 +18,7 @@ export default function Footer() {
           </Link>
           <Box ml="40px">&copy;Jonas Zeferino 2023</Box>
         </VStack>
-      
+
         <VStack ml="40px" align="start">
           <Link href="/signUp">
             <Box ml="40px">Login</Box>
@@ -43,6 +43,24 @@ export default function Footer() {
               <SiThemoviedatabase size={24} />
             </Link>
           </Box>
+        </VStack>
+
+        <VStack ml="40px" align="start">
+          <Link href="/search-free?query=">
+            <Box ml="40px">Free Search</Box>
+          </Link>
+
+          <Link href="/profile">
+            <Box ml="40px">Profile</Box>
+          </Link>
+
+          <Link href="/my-movies-page">
+            <Box ml="40px">My Ratings</Box>
+          </Link>
+
+          <Link href="/send-email-password-reset" target="_blank">
+            <Box ml="40px">Password Reset</Box>
+          </Link>
         </VStack>
       </ChakraProvider>
     </footer>

@@ -48,7 +48,7 @@ export default function PasswordResetPage() {
         <meta name="description" content="filmes, series,"></meta>
       </Head>
       <></>
-      <Center height="100vh">
+      <Center height="50vh">
         <Box
           p={4}
           borderWidth="1px"
@@ -57,7 +57,7 @@ export default function PasswordResetPage() {
           position="relative"
         >
           <Heading as="h1" size="xl" textAlign="center" mb={4}>
-            Reset de Senha
+            Password Reset{" "}
           </Heading>
           <FormControl>
             <FormLabel>Email</FormLabel>
@@ -75,7 +75,7 @@ export default function PasswordResetPage() {
               colorScheme="green"
               size="sm"
             >
-              Envia o Link
+              Send a Link
             </Button>
           </Center>
           <br />
