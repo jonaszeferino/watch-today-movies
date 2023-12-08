@@ -74,7 +74,8 @@ const MoviePage = () => {
   const apiCall = () => {
     // setMovieSearchQuery(null)
     Clean();
-    const url = `https://api.themoviedb.org/3/search/movie?query=${movieSearchQuery}&include_adult=false&language=pt-BR&page=1`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${movieSearchQuery}&include_adult=false&page=1`;
+    // const url = `https://api.themoviedb.org/3/search/movie?query=${movieSearchQuery}&include_adult=false&language=pt-BR&page=1`;
     setIsLoading(true);
 
     fetch(url, {
@@ -105,7 +106,8 @@ const MoviePage = () => {
     setTotals("");
     Promise.all([
       fetch(
-        `https://api.themoviedb.org/3/movie/${movieIdSearch}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
+        `https://api.themoviedb.org/3/movie/${movieIdSearch}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
+        // `https://api.themoviedb.org/3/movie/${movieIdSearch}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
       ),
       fetch(
         `https://api.themoviedb.org/3/movie/${movieIdSearch}/watch/providers?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
@@ -224,17 +226,17 @@ const MoviePage = () => {
     <>
       <ChakraProvider>
         <Head>
-          <title>Onde está meu filme</title>
-          <meta name="keywords" content="tvshow,watch,review, series, filmes"></meta>
+          <title>Where is My Movie?</title>
+          <meta
+            name="keywords"
+            content="tvshow,watch,review, series, filmes"
+          ></meta>
           <meta name="description" content="filmes, series,"></meta>
         </Head>
 
         <LoggedUser />
         <div className={styles.top}>
-          <h3 className={styles.title}>Onde Está Meu Filme?</h3>
-          {/* <span>
-            Verifique em qual lugar do mundo seu filme está disponível
-          </span> */}
+          <h3 className={styles.title}>Where is My Movie?</h3>
         </div>
         <br />
         <br />
@@ -248,7 +250,7 @@ const MoviePage = () => {
         >
           <InputGroup>
             <Input
-              placeholder="Digite o nome do filme"
+              placeholder="Enter the movie name"
               value={movieSearchQuery}
               onChange={(e) => setMovieSearchQuery(e.target.value)}
             />
@@ -257,15 +259,14 @@ const MoviePage = () => {
               <SearchIcon color="black" margin={3} />
 
               <Button colorScheme="purple" onClick={apiCall}>
-                Pesquisar
+                Search
               </Button>
             </InputRightElement>
           </InputGroup>
           <Text>
             {totals === 0 ? (
               <>
-                Sem resultados para a busca: <strong>{movieSearchQuery}</strong>{" "}
-                - Tente outro termo!
+                No Results: <strong>{movieSearchQuery}</strong> - Try Again
               </>
             ) : (
               ""
@@ -275,17 +276,17 @@ const MoviePage = () => {
             <Table>
               <Thead>
                 <Tr>
-                  <Th>Título</Th>
-                  <Th>Título Original</Th>
+                  {/* <Th>Título</Th> */}
+                  <Th>Title</Th>
                   <Th>Poster</Th>
-                  <Th>Selecionar</Th>
+                  <Th>Select</Th>
                 </Tr>
               </Thead>
 
               <Tbody>
                 {movieResultSearchMovie.map((movie) => (
                   <Tr key={movie.id}>
-                    <Td>{movie.title}</Td>
+                    {/* <Td>{movie.title}</Td> */}
                     <Td>{movie.original_title}</Td>
                     <Td>
                       {movie.poster_path ? (
@@ -320,7 +321,7 @@ const MoviePage = () => {
           ) : null}
           {totals > 0 ? (
             <Button colorScheme="purple" onClick={fetchData}>
-              Verificar Os Streamings
+              Verify Streamings
             </Button>
           ) : null}
         </div>
@@ -368,12 +369,10 @@ const MoviePage = () => {
           <ChakraProvider>
             <br />
             <span>
-              Clique nos tipos abaixo pra verificar as listas completas por
-              países
+              Click on the types below to check the complete lists by countries
             </span>
             <br />
             <br />
-
             <div
               style={{
                 maxWidth: "480px",
@@ -395,14 +394,14 @@ const MoviePage = () => {
                     colorScheme={exibirTabelaRent ? "gray" : "blue"}
                     color={exibirTabelaRent ? "black" : "white"}
                   >
-                    {exibirTabelaRent ? "Para Aluguel" : "Para Aluguel"}
+                    {exibirTabelaRent ? "For Rent" : "For Rent"}
                   </Button>
                   <Button
                     onClick={handleExibirTabelaBuy}
                     colorScheme={exibirTabelaBuy ? "gray" : "purple"}
                     color={exibirTabelaBuy ? "black" : "white"}
                   >
-                    {exibirTabelaBuy ? "Compra" : "Compra"}
+                    {exibirTabelaBuy ? "To Buy" : "To Buy"}
                   </Button>
                 </Stack>
               </Center>
@@ -414,16 +413,14 @@ const MoviePage = () => {
                     colorScheme={exibirTabelaAds ? "gray" : "blue"}
                     color={exibirTabelaAds ? "black" : "white"}
                   >
-                    {exibirTabelaAds
-                      ? "Gratuita com Anúncios"
-                      : "Gratuita com Anúncios"}
+                    {exibirTabelaAds ? "Free with Adds" : "Free with Adds"}
                   </Button>
                   <Button
                     onClick={handleExibirTabelaFree}
                     colorScheme={exibirTabelaFree ? "gray" : "purple"}
                     color={exibirTabelaFree ? "black" : "white"}
                   >
-                    {exibirTabelaFree ? "Forma Gratuita" : "Forma Gratuita"}
+                    {exibirTabelaFree ? "Free" : "Free"}
                   </Button>
                 </Stack>
               </Center>

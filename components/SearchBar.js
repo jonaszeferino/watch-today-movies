@@ -95,7 +95,7 @@ const SearchBar = ({ isLoading, showSearchBar = true }) => {
                 borderWidth="1px"
                 mt="24px"
                 type="search"
-                placeholder="Filmes, Series, Pessoas"
+                placeholder="Movies, TvShows, People"
                 value={searchText}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
