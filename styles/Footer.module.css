@@ -1,54 +1,28 @@
-.body {
-  font-family: sans-serif;
-}
-
 .footer {
   display: flex;
   background-image: linear-gradient(to right, #311150, #141315);
   background-size: cover;
   background-position: center;
   color: rgb(255, 255, 255);
-  height: 100px;
-  justify-content: center;
-  align-items: center;
+  height: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
   font-family: "JetBrains Mono", monospace;
+  padding: 40px;
 }
 
-.footer p {
-  font-size: 1rem;
-  margin: 0;
-}
-
-.socialIcons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
 /* Footer Responsive Styles */
 @media only screen and (max-width: 768px) {
   .footer {
     flex-direction: column;
     height: auto;
-    padding: 20px;
     width: 100%;
   }
 
-  .footer p {
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
+  .footerTitle,
+  .footerText,
   .socialIcons {
-    justify-content: center;
-  }
-}
-
-/* Footer Responsive Styles - 2 */
-
-@media (max-width: 767px) {
-  .footer {
-    padding: 20px 0;
-    margin-right: 0;
+    text-align: center;
   }
 }
