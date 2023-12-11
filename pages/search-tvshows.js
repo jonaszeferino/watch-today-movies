@@ -29,7 +29,7 @@ import LoggedUser from "../components/LoggedUser";
 import { Tooltip, Pagination } from "antd";
 
 export default function Discovery() {
-  let [searchMovies, setSearchMovies] = useState([]);
+  let [searchTvShows, setSearchTvShows] = useState([]);
   let [searchRatingSort, setSearchRatingSort] = useState("vote_average.desc");
   let [searchVoteCount, setSearchVoteCount] = useState(100);
 
@@ -45,7 +45,7 @@ export default function Discovery() {
 
   let [isError, setError] = useState(false);
   let [isLoading, setIsLoading] = useState(false);
-  let [searchTvType, setSearchTvType] = useState("");
+  let [searchType, setsearchType] = useState("");
 
   const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
 
@@ -60,8 +60,8 @@ export default function Discovery() {
     "&first_air_date.lte=" +
     (searchMovieReleaseDateTo + 1);
 
-  if (searchTvType !== "") {
-    urlString += "&with_type=" + searchTvType;
+  if (searchType !== "") {
+    urlString += "&with_type=" + searchType;
   }
 
   const apiCall = (currentPage) => {
@@ -72,7 +72,6 @@ export default function Discovery() {
     }
     const url = urlString + "&page=" + currentPage;
     setIsLoading(true);
-    console.log(url);
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -88,7 +87,7 @@ export default function Discovery() {
       })
       .then(
         (result) => (
-          setSearchMovies(result.results),
+          setSearchTvShows(result.results),
           setSearchMovieTotalPages(result.total_pages),
           setSearchMovieRealPage(result.page),
           setSearchMovieTotalResults(result.total_results),
@@ -197,8 +196,8 @@ export default function Discovery() {
           <ChakraProvider>
             <FormLabel>Tv Show Types</FormLabel>
             <Select
-              value={searchTvType}
-              onChange={(event) => setSearchTvType(event.target.value)}
+              value={searchType}
+              onChange={(event) => setsearchType(event.target.value)}
             >
               <option value="">All Types</option>
               <option value="0">Documentary</option>
@@ -258,25 +257,17 @@ export default function Discovery() {
         <ErrorPage message={`Check Credentials`}></ErrorPage>
       ) : (
         <div className={styles.grid}>
-          {searchMovies.map((search) => (
+          {searchTvShows.map((search) => (
             <div key={search.id}>
-              <span className={styles.spantext}></span>{" "}
-              <span
-                className={styles.spantext}
-                style={{
-                  position: "relative",
-                  display: "block",
-                  width: "240px",
-                  height: "360px",
-                }}
-              >
+              <br />
+              <span>
                 <Link
                   href={{
                     pathname: "/tvshow-page",
                     query: { tvShowId: search.id },
                   }}
                 >
-                  <a
+                  <div
                     style={{
                       position: "relative",
                       width: "240px",
@@ -285,32 +276,25 @@ export default function Discovery() {
                     }}
                   >
                     <Tooltip
-                      title="Saiba Mais"
+                      title="Learn More"
                       style={{
                         color: "white",
                         borderColor: "purple",
                         background: "purple",
                       }}
                     >
-                      {search.poster_path ? (
-                        <Image
-                          className={styles.card_image}
-                          src={`https://image.tmdb.org/t/p/original${search.poster_path}`}
-                          alt="poster"
-                          width={240}
-                          height={360}
-                        />
-                      ) : (
-                        <Image
-                          className={styles.card_image}
-                          src="/callback.png"
-                          alt="poster"
-                          width={240}
-                          height={360}
-                        />
-                      )}
+                      <Image
+                        className={styles.card_image}
+                        src={
+                          search.poster_path
+                            ? `https://image.tmdb.org/t/p/original${search.poster_path}`
+                            : "/callback.png"
+                        }
+                        alt="poster"
+                        width={240}
+                        height={360}
+                      />
                     </Tooltip>
-
                     <span
                       style={{
                         position: "absolute",
@@ -322,11 +306,14 @@ export default function Discovery() {
                         textAlign: "center",
                         padding: "8px 0",
                         boxSizing: "border-box",
+                        maxHeight: "40%",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {search.original_name}
                     </span>
-                  </a>
+                  </div>
                 </Link>
               </span>
               <div style={{ maxWidth: "240px", margin: "5px" }}>
