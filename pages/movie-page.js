@@ -52,7 +52,7 @@ const MoviePage = () => {
       )
       .then(([dataMovies, dataProviders, resCredits]) => {
         if (!Array.isArray(resCredits.crew) || resCredits.crew.length === 0) {
-          console.log("Erro: Dados de créditos inválidos");
+          console.log("Invalid data");
           return;
         }
 

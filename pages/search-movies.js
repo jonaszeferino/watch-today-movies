@@ -70,9 +70,6 @@ export default function Discovery() {
     const url = urlString + "&page=" + currentPage;
     setIsLoading(true);
 
-    console.log(url + " call");
-    console.log(movieId + " MovieId");
-
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -622,12 +619,12 @@ export default function Discovery() {
       <Head>
         <title>Discovery Movies</title>
         <meta name="keywords" content="movies,filmes,watch,review"></meta>
-        <meta name="description" content="encontre tudo"></meta>
+        <meta name="description" content="Discovery Movies"></meta>
       </Head>
       <div>
         <LoggedUser />
         <div className={styles.top}>
-          <h3 className={styles.title}> Discovery Movies</h3>
+          <h3 className={styles.title}>Discovery Movies</h3>
         </div>
         <br />
 
@@ -794,7 +791,7 @@ export default function Discovery() {
                       query: { movieId: search.id },
                     }}
                   >
-                    <a
+                    <div
                       style={{
                         position: "relative",
                         width: "240px",
@@ -838,7 +835,7 @@ export default function Discovery() {
                       >
                         {search.title}
                       </span>
-                    </a>
+                    </div>
                   </Link>
                 </span>
                 <div style={{ maxWidth: "240px", margin: "5px" }}>
