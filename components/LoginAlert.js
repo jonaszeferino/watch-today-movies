@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; // Importe useState e useEffect
 import { Alert, Button, Space } from "antd";
-import Link from "next/link";
+import { Link, ChakraProvider } from "@chakra-ui/react";
 import { supabase } from "../utils/supabaseClient"; // Certifique-se de importar supabase aqui
 
 const LoginAlert = () => {
@@ -47,9 +47,7 @@ const LoginAlert = () => {
             showIcon
             action={
               <Button size="small" type="text">
-                <Link href="/signUp">
-                  <a>Go to Login Page</a>
-                </Link>
+                <Link href="/signUp">Go to Login Page</Link>
               </Button>
             }
             closable

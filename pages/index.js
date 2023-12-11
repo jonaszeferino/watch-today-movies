@@ -8,12 +8,11 @@ import { ChakraProvider, Progress, Button } from "@chakra-ui/react";
 import { BiSolidUpArrow } from "react-icons/bi";
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
-import { supabase } from "../utils/supabaseClient"; // 
+import { supabase } from "../utils/supabaseClient"; //
 import { Tooltip } from "antd";
 import LoggedUser from "../components/LoggedUser";
 import LoginAlert from "../components/LoginAlert";
-import CarouselComponent from '../components/carousel';
-
+import CarouselComponent from "../components/carousel";
 
 export default function Home() {
   let [searchMovies, setSearchMovies] = useState([]);
@@ -25,7 +24,8 @@ export default function Home() {
 
   const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
 
-  const urlString = "https://api.themoviedb.org/3/trending/movie/week?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c";
+  const urlString =
+    "https://api.themoviedb.org/3/trending/movie/week?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c";
 
   const apiCall = (currentPage) => {
     const url = urlString;
@@ -171,7 +171,7 @@ export default function Home() {
                         query: { movieId: search.id },
                       }}
                     >
-                      <a
+                      <div
                         style={{
                           position: "relative",
                           width: "240px",
@@ -215,10 +215,9 @@ export default function Home() {
                         >
                           {search.title}
                         </span>
-                      </a>
+                      </div>
                     </Link>
                   </span>
-  
                   <div style={{ maxWidth: "240px", margin: "5px" }}>
                     <ChakraProvider>
                       <Progress
@@ -251,7 +250,7 @@ export default function Home() {
                     query: { tvShowId: searchtv.id },
                   }}
                 >
-                  <a
+                  <div
                     style={{
                       position: "relative",
                       width: "240px",
@@ -290,14 +289,14 @@ export default function Home() {
                         textAlign: "center",
                         padding: "8px 0",
                         boxSizing: "border-box",
-                        maxHeight: "40%", // Define uma altura máxima para a descrição
-                        overflow: "hidden", // Impede que a descrição estenda o espaço
-                        textOverflow: "ellipsis", // Adiciona "..." ao final do texto se ele for cortado
+                        maxHeight: "40%",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {searchtv.original_name}
                     </span>
-                  </a>
+                  </div>
                 </Link>
               </span>
               <div style={{ maxWidth: "240px", margin: "5px" }}>

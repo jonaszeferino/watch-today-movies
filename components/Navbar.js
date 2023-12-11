@@ -23,6 +23,7 @@ import {
   ChakraProvider,
   ModalCloseButton,
   Center,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -61,31 +62,24 @@ export default function Navbar({ isLoading, onAuthenticated }) {
   return (
     <>
       <ul className={styles.navbar}>
-        <li>
-          <Link href="/">
-            <a>| Home</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/watch-today">
-            <a>| What to Watch Today?</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/search-movies">
-            <a>| Discovery Movies</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/search-tvshows">
-            <a>| Find Tv Shows</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/where-is-my-movie">
-            <a>| Where is My Movie? |</a>
-          </Link>
-        </li>
+        <Link href="/">
+          <span> | Home</span>
+        </Link>
+        <Link href="/watch-today">
+          <span> | What to Watch Today?</span>
+        </Link>
+        <Link href="/search-movies">
+          <span>| Discovery Movies</span>
+        </Link>
+        <Link href="/search-tvshows">
+          <span>| Find Tv Shows |</span>
+        </Link>
+        {/* <Link href="/where-is-my-movie">
+                <span>
+                  <ChevronRightIcon /> Where is My Movie?
+                </span>
+              </Link> */}
+
         <br />
         <li>
           <button onClick={onOpen}>Login |</button>
@@ -146,20 +140,10 @@ export default function Navbar({ isLoading, onAuthenticated }) {
                   </MenuButton>
                   <MenuList>
                     <MenuItem>
-                      <Link href="/profile">
-                        <a
-                          style={{ background: "#7657bd", paddingLeft: "10px" }}
-                        >
-                          Data
-                        </a>
-                      </Link>
+                      <ChakraLink href="/profile">Data</ChakraLink>
                     </MenuItem>
                     <MenuItem>
-                      <Link href="/my-movies-page">
-                        <a style={{ background: "#7657bd", padding: "10px" }}>
-                          My Ratings
-                        </a>
-                      </Link>
+                      <ChakraLink href="/my-movies-page">My Ratings</ChakraLink>
                     </MenuItem>
                   </MenuList>
                 </>
