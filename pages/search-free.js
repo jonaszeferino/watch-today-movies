@@ -310,12 +310,12 @@ export default function Discovery() {
                       query: { personId: search.id },
                     }}
                   >
-                    <a
+                    <div
                       className={styles.button}
                       style={{ backgroundColor: "#ebc94a", color: "white" }}
                     >
                       Details
-                    </a>
+                    </div>
                   </Link>
                 ) : null}
 
@@ -326,12 +326,12 @@ export default function Discovery() {
                       query: { movieId: search.id },
                     }}
                   >
-                    <a
+                    <div
                       className={styles.button}
                       style={{ backgroundColor: "#3182ce", color: "white" }}
                     >
                       Details
-                    </a>
+                    </div>
                   </Link>
                 ) : null}
 
@@ -342,12 +342,12 @@ export default function Discovery() {
                       query: { tvShowId: search.id },
                     }}
                   >
-                    <a
+                    <div
                       className={styles.button}
                       style={{ backgroundColor: "#37a169", color: "white" }}
                     >
                       Details
-                    </a>
+                    </div>
                   </Link>
                 ) : null}
 
@@ -382,9 +382,7 @@ export default function Discovery() {
           </button>
           <br />
           <br />
-          <span className={styles.spantext}>
-            Totals: {totalResults}
-          </span>{" "}
+          <span className={styles.spantext}>Totals: {totalResults}</span>{" "}
         </span>
         {showBackToTopButton && <BackToTopButton onClick={scrollToTop} />}
       </div>

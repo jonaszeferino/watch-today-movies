@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import stringSimilarity from "string-similarity";
 
@@ -33,7 +32,6 @@ const SearchBar = ({ isLoading, showSearchBar = true }) => {
       handleSearch();
     }
   }
-
   function handleSearch() {
     setTermosSugeridos([]);
     router.push(`/search-free?query=${searchText}`);
