@@ -356,7 +356,7 @@ export default function Movieapi() {
                 )}
                 {movieData.portugueseTitle && (
                   <Link href={destino}>
-                    <a className={styles.button}>Details</a>
+                    <div className={styles.button}>Details</div>
                   </Link>
                 )}
                 <br />

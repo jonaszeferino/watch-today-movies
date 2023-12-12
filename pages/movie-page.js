@@ -225,14 +225,16 @@ const MoviePage = () => {
                         {data.directors.map((director, index) => (
                           <li key={index}>
                             {director.name}{" "}
-                            <Link
-                              href={{
-                                pathname: "/person-page",
-                                query: { personId: director.id },
-                              }}
-                            >
-                              <a style={{ color: "blue" }}>Jobs</a>
-                            </Link>
+                            <div style={{ color: "blue" }}>
+                              <Link
+                                href={{
+                                  pathname: "/person-page",
+                                  query: { personId: director.id },
+                                }}
+                              >
+                                Jobs
+                              </Link>
+                            </div>
                           </li>
                         ))}
                       </ul>
