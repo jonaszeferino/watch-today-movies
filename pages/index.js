@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ErrorPage from "./error-page";
 import { ChakraProvider, Progress, Button } from "@chakra-ui/react";
 import { BiSolidUpArrow } from "react-icons/bi";
+import { Rate } from "antd";
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
 import { supabase } from "../utils/supabaseClient"; //
@@ -227,7 +228,8 @@ export default function Home() {
                         colorScheme={getProgressColor(search.vote_average)}
                       />
                     </ChakraProvider>
-                    {search.vote_average}
+                    <Rate value={1} count={1} />
+                   {" "} {search.vote_average}
                   </div>
                   <br />
                 </div>
@@ -308,6 +310,8 @@ export default function Home() {
                     colorScheme={getProgressColor(searchtv.vote_average)}
                   />
                 </ChakraProvider>
+                <Rate value={1} count={1} />
+                   {" "} 
                 {searchtv.vote_average}
               </div>
               <br />

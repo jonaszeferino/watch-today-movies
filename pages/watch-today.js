@@ -259,22 +259,7 @@ export default function Movieapi() {
                       <TableContainer>
                         <Table size="sm">
                           <Thead>
-                            {/* <Tr>
-                              <Td
-                                style={{
-                                  fontFamily: "Helvetica Neue, sans-serif",
-                                }}
-                              >
-                                Título Em Português
-                              </Td>
-                              <Td
-                                style={{
-                                  fontFamily: "Helvetica Neue, sans-serif",
-                                }}
-                              >
-                                {movieData.portugueseTitle}
-                              </Td>
-                            </Tr> */}
+             
                           </Thead>
                           <Tbody></Tbody>
                         </Table>
