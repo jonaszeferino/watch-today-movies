@@ -40,7 +40,7 @@ export default function Personapi() {
         return;
       }
       const url = `https://api.themoviedb.org/3/person/${personIdRecive}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
-      // const url = `https://api.themoviedb.org/3/person/${personIdRecive}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+
       fetch(url, {})
         .then((response) => {
           if (response.status === 200) {
@@ -63,7 +63,6 @@ export default function Personapi() {
       return;
     }
     const url = `https://api.themoviedb.org/3/person/${personIdRecive}/combined_credits?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
-    // const url = `https://api.themoviedb.org/3/person/${personIdRecive}/combined_credits?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
 
     fetch(url, {})
       .then((response) => {
@@ -178,13 +177,13 @@ export default function Personapi() {
                 </Table>
               </TableContainer>
             </div>
-          </ChakraProvider>
+          
           <br />
           <button onClick={CallDataPerson} className={styles.button}>
             See More{" "}
           </button>
           <br />
-          <ChakraProvider>
+          
             {dataPerson.cast ? (
               <>
                 <Divider />
@@ -195,8 +194,7 @@ export default function Personapi() {
                 <br />
               </>
             ) : null}
-          </ChakraProvider>
-          <ChakraProvider>
+
             <div className={styles.grid}>
               {dataPerson.cast &&
                 dataPerson.cast.map((work) => (
@@ -242,8 +240,9 @@ export default function Personapi() {
                               ? { movieId: work.id }
                               : { tvShowId: work.id },
                         }}
+                        passHref
                       >
-                        <a className={styles.button}>Details</a>
+                        Details
                       </Link>
                       <br />
                       <br />
@@ -311,7 +310,7 @@ export default function Personapi() {
                               : { tvShowId: workCrew.id },
                         }}
                       >
-                        <a className={styles.button}>Details</a>
+                        Details
                       </Link>
                       <br />
                       <br />
