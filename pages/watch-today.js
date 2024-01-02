@@ -283,13 +283,13 @@ export default function Movieapi() {
                         </Table>
                         <Tabs size="md" variant="enclosed">
                           <TabList>
-                            <Tab
+                            {/* <Tab
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",
                               }}
                             >
                               Average
-                            </Tab>
+                            </Tab> */}
                             <Tab
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",
