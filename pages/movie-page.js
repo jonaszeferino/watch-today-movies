@@ -200,7 +200,7 @@ const MoviePage = () => {
             />
           </Tooltip>
         </ChakraProvider>
-        <Rate value={1} count={1} /> {data.ratingCount} / {data.average}
+        <Rate value={1} count={1} />  {data.average} / {data.ratingCount} 
       </div>
       <br />
       <div
