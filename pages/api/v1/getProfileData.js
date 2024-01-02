@@ -5,11 +5,9 @@ export default async function getProfileData(req, res) {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
   }
-
-  const { email } = req.query; // Use o endereço de e-mail fornecido na consulta
-
+const { email } = req.query;
+  console.log(email)
   const collection = client.db("moviesTvshows").collection("users");
-
   try {
     const user = await collection.findOne({ email: email });
 
