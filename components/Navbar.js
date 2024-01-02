@@ -61,6 +61,7 @@ export default function Navbar({ isLoading, onAuthenticated }) {
 
   return (
     <>
+      <SearchBar isLoading={isLoading} />
       <ul className={styles.navbar}>
         <Link href="/">
           <span> | Home</span>
@@ -74,12 +75,6 @@ export default function Navbar({ isLoading, onAuthenticated }) {
         <Link href="/search-tvshows">
           <span>| Discover Tv Shows |</span>
         </Link>
-        {/* <Link href="/where-is-my-movie">
-                <span>
-                  <ChevronRightIcon /> Where is My Movie?
-                </span>
-              </Link> */}
-
         <br />
         <li>
           <button onClick={onOpen}>Login |</button>
@@ -152,7 +147,6 @@ export default function Navbar({ isLoading, onAuthenticated }) {
           </li>
         ) : null}
       </ul>
-      <SearchBar isLoading={isLoading} />
     </>
   );
 }

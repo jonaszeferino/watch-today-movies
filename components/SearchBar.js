@@ -68,57 +68,69 @@ const SearchBar = ({ isLoading, showSearchBar = true }) => {
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+    <div
+      style={{
+        maxWidth: "100%",
+        margin: "0 auto",
+        backgroundColor: "#7f5ad5",
+        width: "100%", // Defina a largura como 100%
+        border: "none",
+      }}
+    >
       <ChakraProvider>
-        <Flex
-          alignItems="center"
-          width="100%"
-          flex="1"
-          style={{ margin: "2px" }}
-          flexDirection="column"
-        >
-          <>
-            <InputGroup
-              flex="1"
-              width={isMobile ? "80%" : "100%"}
-              flexDirection="column"
-            >
-              <Input
-                margin="2px"
-                required={true}
-                size="md"
-                bg="white"
-                color="black"
-                borderColor="gray"
-                borderWidth="1px"
-                mt="24px"
-                type="search"
-                placeholder="Movies, TvShows, People"
-                value={searchText}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
-                onBlur={() => {
-                  if (!isMouseOverSuggestions) {
-                    setTermosSugeridos([]);
-                  }
-                }}
-                pr={isMobile ? "2.5rem" : "4.5rem"}
-                marginLeft={isMobile ? "auto" : "0"}
-                marginRight={isMobile ? "auto" : "0"}
-              />
-              {!isMobile && (
-                <InputRightElement
-                  size="lg"
+        <Center>
+          <Flex
+            alignItems="center"
+            maxWidth="60%" // Defina a largura como 100%
+            flex="1"
+            flexDirection="column"
+            border="none"
+          >
+            <>
+              <InputGroup
+                flex="1"
+                width="100%" // Defina a largura como 100%
+                flexDirection="column"
+                border="none" 
+
+              >
+                <Input
+                  margin="2px"
+                  required={true}
+                  size="md"
+                  bg="white"
+                  color="black"
+                  border="none"
                   mt="24px"
-                  pointerEvents="none"
-                  marginLeft="auto"
-                  marginRight="auto"
-                >
-                  <SearchIcon color="gray.300" margin={1} size="lg" />
-                </InputRightElement>
-              )}
-            </InputGroup>
-            <Center>
+                  type="search"
+                  placeholder="Movies, TvShows, People"
+                  value={searchText}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  onBlur={() => {
+                    if (!isMouseOverSuggestions) {
+                      setTermosSugeridos([]);
+                    }
+                  }}
+                  pr={isMobile ? "2.5rem" : "4.5rem"}
+                  marginLeft={isMobile ? "auto" : "0"}
+                  marginRight={isMobile ? "auto" : "0"}
+                />
+                {!isMobile && (
+                  <InputRightElement
+                    size="lg"
+                    mt="24px"
+                    pointerEvents="none"
+                    marginLeft="auto"
+                    marginRight="auto"
+                    border="none" 
+
+                  >
+                    <SearchIcon color="gray.300" margin={1} size="lg" />
+                  </InputRightElement>
+                )}
+              </InputGroup>
+              {/* <Center>
               <Button
                 type="submit"
                 marginTop={1}
@@ -134,67 +146,71 @@ const SearchBar = ({ isLoading, showSearchBar = true }) => {
               >
                 Search
               </Button>
-            </Center>
-          </>
+            </Center> */}
+            </>
 
-          {termosSugeridos.length > 0 && (
-            <Box
-              mt="2"
-              position="absolute"
-              zIndex="9999"
-              bg="white"
-              boxShadow="md"
-              borderRadius="md"
-              width="33%"
-            >
-              <ul>
-                {termosSugeridos.length > 0 && (
-                  <Box
-                    mt="2"
-                    position="absolute"
-                    zIndex="9999"
-                    bg="white"
-                    boxShadow="md"
-                    borderRadius="md"
-                    width="33%"
-                    onMouseEnter={() => setIsMouseOverSuggestions(true)}
-                    onMouseLeave={() => setIsMouseOverSuggestions(false)}
-                  >
-                    <Text p="2" fontWeight="bold">
-                      Suggestions:
-                    </Text>
-                    <ul
-                      style={{
-                        listStyle: "none",
-                        padding: 0,
-                        margin: 0,
-                        width: "200px",
-                      }}
+            {termosSugeridos.length > 0 && (
+              <Box
+                mt="2"
+                position="absolute"
+                zIndex="9999"
+                bg="white"
+                boxShadow="md"
+                borderRadius="md"
+                width="33%"
+                border="none" 
+              >
+                <ul>
+                  {termosSugeridos.length > 0 && (
+                    <Box
+                      mt="2"
+                      position="absolute"
+                      zIndex="9999"
+                      bg="white"
+                      boxShadow="md"
+                      borderRadius="md"
+                      width="33%"
+                      border="none" 
+
+                      onMouseEnter={() => setIsMouseOverSuggestions(true)}
+                      onMouseLeave={() => setIsMouseOverSuggestions(false)}
                     >
-                      {termosSugeridos.map((termo, index) => (
-                        <li
-                          key={index}
-                          onClick={() => selectTerm(termo)}
-                          style={{
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {termo}
-                        </li>
-                      ))}
-                    </ul>
-                  </Box>
-                )}
-              </ul>
-            </Box>
-          )}
+                      <Text p="2" fontWeight="bold">
+                        Suggestions:
+                      </Text>
+                      <ul
+                        style={{
+                          listStyle: "none",
+                          padding: 0,
+                          margin: 0,
+                          width: "200px",
+                        }}
+                      >
+                        {termosSugeridos.map((termo, index) => (
+                          <li
+                            key={index}
+                            onClick={() => selectTerm(termo)}
+                            style={{
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {termo}
+                          </li>
+                        ))}
+                      </ul>
+                    </Box>
+                  )}
+                </ul>
+              </Box>
+            )}
 
-          <Box>
-            <Text>{isLoading ? <Spinner /> : " "}</Text>
-          </Box>
-        </Flex>
+            <Box>
+              <Text>{isLoading ? <Spinner /> : " "}</Text>
+            </Box>
+          </Flex>
+        </Center>
       </ChakraProvider>
     </div>
   );
