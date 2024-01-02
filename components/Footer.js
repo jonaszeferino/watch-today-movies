@@ -16,7 +16,7 @@ export default function Footer() {
           <Link href="/where-is-my-movie">
             <Box ml="40px">Where Is My movie?</Box>
           </Link>
-          <Box ml="40px">&copy;Jonas Zeferino 2023</Box>
+          <Box ml="40px">&copy;Jonas Zeferino 2024</Box>
         </VStack>
 
         <VStack ml="40px" align="start">

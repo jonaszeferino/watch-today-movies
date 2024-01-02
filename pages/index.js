@@ -221,15 +221,30 @@ export default function Home() {
                   </span>
                   <div style={{ maxWidth: "240px", margin: "5px" }}>
                     <ChakraProvider>
-                      <Progress
-                        hasStripe
-                        value={search.vote_average}
-                        max={10}
-                        colorScheme={getProgressColor(search.vote_average)}
-                      />
+                      <Tooltip
+                        title={
+                          <div style={{ whiteSpace: "pre-line" }}>
+                            0.1 a 3.999 - Red - Worst <br />
+                            4.0 a 5.999 - Yellow - Below Average <br />
+                            6.0 a 7.999 - Green - Good <br />
+                            8.0 a 10.00 - Blue - Excellent
+                          </div>
+                        }
+                        style={{
+                          color: "white",
+                          borderColor: "purple",
+                          background: "purple",
+                        }}
+                      >
+                        <Progress
+                          hasStripe
+                          value={search.vote_average}
+                          max={10}
+                          colorScheme={getProgressColor(search.vote_average)}
+                        />
+                      </Tooltip>
                     </ChakraProvider>
-                    <Rate value={1} count={1} />
-                   {" "} {search.vote_average}
+                    <Rate value={1} count={1} /> {search.vote_average}
                   </div>
                   <br />
                 </div>
@@ -302,17 +317,31 @@ export default function Home() {
                 </Link>
               </span>
               <div style={{ maxWidth: "240px", margin: "5px" }}>
-                <ChakraProvider>
-                  <Progress
-                    hasStripe
-                    value={searchtv.vote_average}
-                    max={10}
-                    colorScheme={getProgressColor(searchtv.vote_average)}
-                  />
-                </ChakraProvider>
-                <Rate value={1} count={1} />
-                   {" "} 
-                {searchtv.vote_average}
+              <ChakraProvider>
+                      <Tooltip
+                        title={
+                          <div style={{ whiteSpace: "pre-line" }}>
+                            0.1 a 3.999 - Red - Worst <br />
+                            4.0 a 5.999 - Yellow - Below Average <br />
+                            6.0 a 7.999 - Green - Good <br />
+                            8.0 a 10.00 - Blue - Excellent
+                          </div>
+                        }
+                        style={{
+                          color: "white",
+                          borderColor: "purple",
+                          background: "purple",
+                        }}
+                      >
+                        <Progress
+                          hasStripe
+                          value={searchtv.vote_average}
+                          max={10}
+                          colorScheme={getProgressColor(searchtv.vote_average)}
+                        />
+                      </Tooltip>
+                    </ChakraProvider>
+                <Rate value={1} count={1} /> {searchtv.vote_average}
               </div>
               <br />
             </div>
