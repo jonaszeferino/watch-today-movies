@@ -120,7 +120,7 @@ export default function Movieapi() {
     }
   }
 
-  const inserLike = async () => {
+  const insertLike = async () => {
     try {
       const response = await fetch("/api/v1/postRateRandomMovie", {
         method: "POST",
@@ -258,9 +258,7 @@ export default function Movieapi() {
                     <ChakraProvider>
                       <TableContainer>
                         <Table size="sm">
-                          <Thead>
-             
-                          </Thead>
+                          <Thead></Thead>
                           <Tbody></Tbody>
                         </Table>
                         <Tabs size="md" variant="enclosed">
@@ -380,7 +378,7 @@ export default function Movieapi() {
                 )}
                 {movieData.portugueseTitle && (
                   <button onClick={apiCall} className={styles.button}>
-                    Verify New
+                    Try Again{" "}
                   </button>
                 )}
               </div>

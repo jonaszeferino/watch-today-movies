@@ -224,17 +224,15 @@ const MoviePage = () => {
                       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                         {data.directors.map((director, index) => (
                           <li key={index}>
-                            {director.name}{" "}
-                            <div style={{ color: "blue" }}>
-                              <Link
-                                href={{
-                                  pathname: "/person-page",
-                                  query: { personId: director.id },
-                                }}
-                              >
-                                Jobs
-                              </Link>
-                            </div>
+                            <Link
+                              href={{
+                                pathname: "/person-page",
+                                query: { personId: director.id },
+                              }}
+                              legacyBehavior
+                            >
+                              <a style={{ color: "blue" }}>{director.name}</a>
+                            </Link>{" "}
                           </li>
                         ))}
                       </ul>
@@ -288,7 +286,7 @@ const MoviePage = () => {
                   <Td>{data.popularity}</Td>
                 </Tr>
                 <Tr>
-                  <Th>Gender</Th>
+                  <Th>Genre</Th>
                   <Td
                     style={{
                       whiteSpace: "pre-wrap",

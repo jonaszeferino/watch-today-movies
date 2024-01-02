@@ -181,7 +181,7 @@ export default function Personapi() {
           </ChakraProvider>
           <br />
           <button onClick={CallDataPerson} className={styles.button}>
-            Look the Jobs
+            See More{" "}
           </button>
           <br />
           <ChakraProvider>
