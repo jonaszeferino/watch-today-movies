@@ -3,9 +3,6 @@ import styles from "../styles/Home.module.css";
 import ErrorPage from "./error-page";
 import Head from "next/head";
 import Link from "next/link";
-import { Rate } from "antd";
-import TranslationComponent from "../components/translateComponent";
-import TranslationComponentCountryName from "../components/translateComponentCountryName";
 import {
   ChakraProvider,
   Progress,
@@ -31,6 +28,8 @@ import {
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
 import LoggedUser from "../components/LoggedUser";
+import { Tooltip } from "antd";
+import { Rate } from "antd";
 
 export default function Movieapi() {
   const [movieData, setMovieData] = useState({});
@@ -211,48 +210,69 @@ export default function Movieapi() {
                     )}
                   </span>
                   <br />
-                  {movieData.portugueseTitle ? (
-                    <span>{movieData.average}/10</span>
-                  ) : null}
-                  <br />
+                </h1>
+                <h1>
+                  <ChakraProvider>
+                    {movieData.adult === false ? (
+                      <>
+                        {isLoadingPage === false ? (
+                          <Image
+                            className={styles.card_image_big}
+                            src={
+                              movieData.image
+                                ? "https://image.tmdb.org/t/p/original" +
+                                  movieData.image
+                                : "/callback_gray.png"
+                            }
+                            alt="poster"
+                            width={isMobile ? "240px" : "480px"}
+                            height={isMobile ? "360px" : "720px"}
+                          />
+                        ) : (
+                          <Skeleton
+                            width={isMobile ? "240px" : "480px"}
+                            height={isMobile ? "360px" : "720px"}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      "Blocked Content"
+                    )}
+                  </ChakraProvider>
                 </h1>
                 {movieData.portugueseTitle ? (
                   <div style={{ maxWidth: "480px", margin: "0 auto" }}>
                     <ChakraProvider>
-                      <Progress
-                        hasStripe
-                        value={movieData.average}
-                        max={10}
-                        colorScheme={getProgressColor(movieData.average)}
-                      />
+                      <Tooltip
+                        title={
+                          <div style={{ whiteSpace: "pre-line" }}>
+                            0.1 a 3.999 - Red - Worst <br />
+                            4.0 a 5.999 - Yellow - Below Average <br />
+                            6.0 a 7.999 - Green - Good <br />
+                            8.0 a 10.00 - Blue - Excellent
+                          </div>
+                        }
+                        style={{
+                          color: "white",
+                          borderColor: "purple",
+                          background: "purple",
+                        }}
+                      >
+                        <Progress
+                          hasStripe
+                          value={movieData.average}
+                          max={10}
+                          colorScheme={getProgressColor(movieData.average)}
+                        />
+                      </Tooltip>
                     </ChakraProvider>
-                    <br />
                   </div>
                 ) : null}
-                <h1>
-                  <ChakraProvider>
-                    {isLoadingPage === false ? (
-                      <Image
-                        className={styles.card_image_big}
-                        src={
-                          movieData.image
-                            ? "https://image.tmdb.org/t/p/original" +
-                              movieData.image
-                            : "/callback_gray.png"
-                        }
-                        alt="poster"
-                        width={isMobile ? "240px" : "480px"}
-                        height={isMobile ? "360px" : "720px"}
-                      />
-                    ) : (
-                      <Skeleton
-                        width={isMobile ? "240px" : "480px"}
-                        height={isMobile ? "360px" : "720px"}
-                      />
-                    )}
-                  </ChakraProvider>
-                </h1>
-
+                <Rate value={1} count={1} /> {movieData.average}
+                {movieData.portugueseTitle ? (
+                  <span>{`${movieData.average} / ${movieData.ratingCount} Votes`}</span>
+                ) : null}
+                <br />
                 {movieData.portugueseTitle && (
                   <div style={{ maxWidth: "480px", margin: "0 auto" }}>
                     <ChakraProvider>
@@ -293,27 +313,8 @@ export default function Movieapi() {
                             </Tab>
                           </TabList>
                           <TabPanels>
-                            <TabPanel
-                              style={{
-                                fontFamily: "Helvetica Neue, sans-serif",
-                              }}
-                            >
-                              {`${movieData.average} / ${movieData.ratingCount} Votes`}
-                            </TabPanel>
-                            <TabPanel>
-                              {/* <TranslationComponentCountryName
-                                text={movieData.country}
-                                language="pt"
-                              /> */}
-                              {movieData.country}
-                            </TabPanel>
-                            <TabPanel>
-                              {/* <TranslationComponent
-                                text={movieData.originalLanguage}
-                                language="pt"
-                              /> */}
-                              {movieData.originalLanguage}
-                            </TabPanel>
+                            <TabPanel>{movieData.country}</TabPanel>
+                            <TabPanel>{movieData.originalLanguage}</TabPanel>
                             <TabPanel
                               style={{
                                 fontFamily: "Helvetica Neue, sans-serif",

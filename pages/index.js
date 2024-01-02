@@ -25,8 +25,7 @@ export default function Home() {
 
   const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
 
-  const urlString =
-    "https://api.themoviedb.org/3/trending/movie/week?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c";
+  const urlString = "https://api.themoviedb.org/3/trending/movie/week";
 
   const apiCall = (currentPage) => {
     const url = urlString;
@@ -35,6 +34,7 @@ export default function Home() {
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
+        Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
       }),
     })
       .then((response) => {
@@ -57,8 +57,7 @@ export default function Home() {
     apiCall(page);
   }, [page]);
 
-  const urlStringTv =
-    "https://api.themoviedb.org/3/trending/tv/week?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c";
+  const urlStringTv = "https://api.themoviedb.org/3/trending/tv/week?";
 
   const apiCallTv = (currentPage) => {
     const urlTv = urlStringTv;
@@ -67,6 +66,7 @@ export default function Home() {
     fetch(urlTv, {
       headers: new Headers({
         "Content-Type": "application/json",
+        Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
       }),
     })
       .then((response) => {
@@ -317,30 +317,30 @@ export default function Home() {
                 </Link>
               </span>
               <div style={{ maxWidth: "240px", margin: "5px" }}>
-              <ChakraProvider>
-                      <Tooltip
-                        title={
-                          <div style={{ whiteSpace: "pre-line" }}>
-                            0.1 a 3.999 - Red - Worst <br />
-                            4.0 a 5.999 - Yellow - Below Average <br />
-                            6.0 a 7.999 - Green - Good <br />
-                            8.0 a 10.00 - Blue - Excellent
-                          </div>
-                        }
-                        style={{
-                          color: "white",
-                          borderColor: "purple",
-                          background: "purple",
-                        }}
-                      >
-                        <Progress
-                          hasStripe
-                          value={searchtv.vote_average}
-                          max={10}
-                          colorScheme={getProgressColor(searchtv.vote_average)}
-                        />
-                      </Tooltip>
-                    </ChakraProvider>
+                <ChakraProvider>
+                  <Tooltip
+                    title={
+                      <div style={{ whiteSpace: "pre-line" }}>
+                        0.1 a 3.999 - Red - Worst <br />
+                        4.0 a 5.999 - Yellow - Below Average <br />
+                        6.0 a 7.999 - Green - Good <br />
+                        8.0 a 10.00 - Blue - Excellent
+                      </div>
+                    }
+                    style={{
+                      color: "white",
+                      borderColor: "purple",
+                      background: "purple",
+                    }}
+                  >
+                    <Progress
+                      hasStripe
+                      value={searchtv.vote_average}
+                      max={10}
+                      colorScheme={getProgressColor(searchtv.vote_average)}
+                    />
+                  </Tooltip>
+                </ChakraProvider>
                 <Rate value={1} count={1} /> {searchtv.vote_average}
               </div>
               <br />
