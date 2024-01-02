@@ -185,7 +185,7 @@ export default function Discovery() {
               value={searchVoteCount}
               onChange={(event) => setSearchVoteCount(event.target.value)}
             >
-              <option value="0">More than 0 votes</option>
+              <option value="0">Any</option>
               <option value="50">More than 50 votes</option>
               <option value="100">More than 100 votes</option>
               <option value="200">More than 200 votes</option>
