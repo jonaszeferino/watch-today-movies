@@ -51,15 +51,15 @@ export default function Discovery() {
   const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
 
   let urlString =
-    // "https://api.themoviedb.org/3/discover/tv?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&include_adult=false&include_video=false&vote_count.gte=" +
-    "https://api.themoviedb.org/3/discover/tv?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&include_adult=false&include_video=false&vote_count.gte=" +
+    
+    "https://api.themoviedb.org/3/discover/tv?&include_adult=false&include_video=false&vote_count.gte=" +
     searchVoteCount +
     "&vote_count.lte=10000000&sort_by=" +
     searchRatingSort +
     "&first_air_date.gte=" +
-    (searchMovieReleaseDateFrom + 1) +
+    (searchMovieReleaseDateFrom) +
     "&first_air_date.lte=" +
-    (searchMovieReleaseDateTo + 1);
+    (searchMovieReleaseDateTo);
 
   if (searchType !== "") {
     urlString += "&with_type=" + searchType;
@@ -76,6 +76,7 @@ export default function Discovery() {
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
+        Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
       }),
     })
       .then((response) => {
