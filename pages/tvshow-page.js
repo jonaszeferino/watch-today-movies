@@ -114,13 +114,14 @@ const MoviePage = () => {
     if (!tvShowId) {
       return;
     }
-    const url = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
-    // const url = `https://api.themoviedb.org/3/tv/${tvShowId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/tv/${tvShowId}?`;
 
-    console.log(tvShowId);
-    console.log(url);
-
-    fetch(url, {})
+    fetch(url, {
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
+      }),
+    })
       .then((response) => {
         if (response.status === 200) {
           setError(false);

@@ -35,7 +35,7 @@ export default function PasswordResetPage() {
       }
       setAlertMessage("Reset link sent to your e-mail");
     } catch (e) {
-      console.log(e); // Add this line to log any errors to the console
+      console.log(e); 
       setAlertMessage(e.message);
     }
   };
