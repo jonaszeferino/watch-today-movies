@@ -39,7 +39,7 @@ The project's name originates from the page where, upon clicking a button, an al
 - Social login
 
 ## Languages
-- Brazilian Portuguese
+- English
 
 ## Hosting
 - Vercel (conected to gitHub)
