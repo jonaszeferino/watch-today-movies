@@ -165,7 +165,7 @@ export default function Discovery() {
           }}
         >
           <ChakraProvider>
-            <FormLabel>Ordem:</FormLabel>
+            <FormLabel>Order</FormLabel>
             <Select
               value={searchRatingSort}
               onChange={(event) => setSearchRatingSort(event.target.value)}
@@ -180,7 +180,7 @@ export default function Discovery() {
           </ChakraProvider>
           <br />
           <ChakraProvider>
-            <FormLabel>Nº de Votos:</FormLabel>
+            <FormLabel>Vote Range</FormLabel>
             <Select
               value={searchVoteCount}
               onChange={(event) => setSearchVoteCount(event.target.value)}
