@@ -22,6 +22,7 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { Rate } from "antd";
 
 const MoviePage = () => {
   const router = useRouter();
@@ -151,18 +152,6 @@ const MoviePage = () => {
       <LoggedUser />
       <span className={styles.title}>{data.originalTitle}</span>
       <br />
-      <br />
-      <div style={{ maxWidth: "480px", margin: "0 auto" }}>
-        <ChakraProvider>
-          <Progress
-            hasStripe
-            value={data.average}
-            max={10}
-            colorScheme={getProgressColor(data.average)}
-          />
-        </ChakraProvider>
-      </div>
-      <br />
       <div>
         {isLoading ? (
           <div>Loading...</div>
@@ -181,7 +170,17 @@ const MoviePage = () => {
           </span>
         )}
       </div>
-      {/* Tabela aqui para baixo */}
+      <div style={{ maxWidth: "480px", margin: "0 auto" }}>
+        <ChakraProvider>
+          <Progress
+            hasStripe
+            value={data.average}
+            max={10}
+            colorScheme={getProgressColor(data.average)}
+          />
+        </ChakraProvider>
+        <Rate value={1} count={1} /> {data.average} / {data.ratingCount}
+      </div>
       <br />
       <div
         style={{ maxWidth: "480px", margin: "0 auto", wordBreak: "break-word" }}
@@ -241,14 +240,14 @@ const MoviePage = () => {
                     )}
                   </Td>
                 </Tr>
-                <Tr>
+                {/* <Tr>
                   <Th>Rating Count</Th>
                   <Td>{data.ratingCount}</Td>
                 </Tr>
                 <Tr>
                   <Th>Average</Th>
                   <Td>{data.average}</Td>
-                </Tr>
+                </Tr> */}
                 <Tr>
                   <Th>IMDB</Th>
                   <Td>https://www.imdb.com/title/{data.imdb}</Td>
