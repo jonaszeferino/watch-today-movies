@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import { BiSolidUpArrow } from "react-icons/bi";
+
 import {
   Box,
   Button,
@@ -26,7 +26,8 @@ import {
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
 import LoggedUser from "../components/LoggedUser";
-import { Tooltip, Pagination } from "antd";
+import { Tooltip, Rate } from "antd";
+
 
 export default function Discovery() {
   let [searchTvShows, setSearchTvShows] = useState([]);
@@ -325,7 +326,7 @@ export default function Discovery() {
                     colorScheme={getProgressColor(search.vote_average)}
                   />
                 </ChakraProvider>
-                {search.vote_average}
+                <Rate value={1} count={1} /> {search.vote_average}
               </div>
               <br />
             </div>

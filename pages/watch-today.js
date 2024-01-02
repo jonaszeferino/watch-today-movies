@@ -268,9 +268,9 @@ export default function Movieapi() {
                     </ChakraProvider>
                   </div>
                 ) : null}
-                <Rate value={1} count={1} /> {movieData.average}
+                <Rate value={1} count={1} /> 
                 {movieData.portugueseTitle ? (
-                  <span>{`${movieData.average} / ${movieData.ratingCount} Votes`}</span>
+                  <span>{`${movieData.average} / ${movieData.ratingCount}`}</span>
                 ) : null}
                 <br />
                 {movieData.portugueseTitle && (

@@ -5,15 +5,13 @@ import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import ErrorPage from "./error-page";
 import { ChakraProvider, Progress, Button } from "@chakra-ui/react";
-import { BiSolidUpArrow } from "react-icons/bi";
-import { Rate } from "antd";
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
 import { supabase } from "../utils/supabaseClient"; //
-import { Tooltip } from "antd";
+import { Tooltip, Rate } from "antd";
 import LoggedUser from "../components/LoggedUser";
 import LoginAlert from "../components/LoginAlert";
-import CarouselComponent from "../components/carousel";
+
 
 export default function Home() {
   let [searchMovies, setSearchMovies] = useState([]);
@@ -134,12 +132,11 @@ export default function Home() {
         <meta name="keywords" content="movies,tvshows,"></meta>
         <meta name="description" content="movies,tvshows"></meta>
       </Head>
-      {/* <SearchBar isLoading={isLoading} /> */}
 
       <div>
         <LoggedUser />
         <LoginAlert />
-        {/* <CarouselComponent/> */}
+
         <div>
           <div className={styles.top}>
             <h3 className={styles.title}> Trending Movies of the Week</h3>
@@ -254,7 +251,7 @@ export default function Home() {
         </div>
 
         <div className={styles.top}>
-          <h3 className={styles.title}> Trending TV Shows of the Week</h3>
+          <h3 className={styles.title}>Trending TV Shows of the Week</h3>
         </div>
         <div className={styles.grid}>
           {searchTv.map((searchtv) => (

@@ -21,7 +21,8 @@ import { BiSolidUpArrow } from "react-icons/bi";
 import useBackToTopButton from "../components/backToTopButtonLogic";
 import BackToTopButton from "../components/backToTopButton";
 import LoggedUser from "../components/LoggedUser";
-import { Tooltip } from "antd";
+import { Tooltip, Rate } from "antd";
+
 
 export default function Discovery() {
   let [movieId, setMovieId] = useState();
@@ -766,6 +767,7 @@ export default function Discovery() {
           {isLoading ? (
             <ChakraProvider>
               <Progress size="xs" isIndeterminate />{" "}
+              
             </ChakraProvider>
           ) : null}
         </span>
@@ -847,7 +849,8 @@ export default function Discovery() {
                       colorScheme={getProgressColor(search.vote_average)}
                     />
                   </ChakraProvider>
-                  {search.vote_average}
+                  <Rate value={1} count={1} /> {search.vote_average}
+                  
                 </div>
                 <br />
               </div>
