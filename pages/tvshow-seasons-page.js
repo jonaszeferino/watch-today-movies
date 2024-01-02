@@ -26,14 +26,18 @@ const MoviePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const { showBackToTopButton, scrollToTop } = useBackToTopButton(); // tranformado num hook
+  const { showBackToTopButton, scrollToTop } = useBackToTopButton();
 
   useEffect(() => {
     const CallDataTvShowsDetails = () => {
-      const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`;
-      // const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`;
+      const url = `https://api.themoviedb.org/3/tv/${tvShowId}/season/${tvShowSeasonId}`;
 
-      fetch(url)
+      fetch(url, {
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
+        }),
+      })
         .then((response) => {
           if (response.status === 200) {
             return response.json();
