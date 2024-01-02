@@ -59,12 +59,12 @@ export default function Discovery() {
       setIsLoading(true);
       setError(false);
 
-      const url = `https://api.themoviedb.org/3/search/multi?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&query=${searchText}&include_adult=false`;
-      // const url = `https://api.themoviedb.org/3/search/multi?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR&query=${searchText}&include_adult=false`;
+      const url = `https://api.themoviedb.org/3/search/multi?query=${searchText}&include_adult=false`;
 
       fetch(url, {
         headers: new Headers({
           "Content-Type": "application/json",
+          Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
         }),
       })
         .then((response) => {
@@ -104,15 +104,15 @@ export default function Discovery() {
   let totalResults = searchMovieTotalResults;
 
   const handleMoviesClick = () => {
-    setShowMovies(!showMovies); // Inverte o valor do estado showMovies
+    setShowMovies(!showMovies);
   };
 
   const handleTvShowsClick = () => {
-    setShowTvShows(!showTvShows); // Inverte o valor do estado showTvShows
+    setShowTvShows(!showTvShows);
   };
 
   const handlePersonClick = () => {
-    setShowPerson(!showPerson); // Inverte o valor do estado showPerson
+    setShowPerson(!showPerson);
   };
 
   return (
