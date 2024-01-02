@@ -28,7 +28,7 @@ export default function PasswordResetPage() {
     setAlertMessage("");
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "https://supabase-nextjs-gamma.vercel.app/password-reset",
+        redirectTo: "https://www.watchtodayguide.com/password-reset",
       });
       if (error) {
         throw error;
