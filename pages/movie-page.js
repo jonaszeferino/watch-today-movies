@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { Rate } from "antd";
+import { Tooltip } from "antd";
 
 const MoviePage = () => {
   const router = useRouter();
@@ -172,12 +173,28 @@ const MoviePage = () => {
       </div>
       <div style={{ maxWidth: "480px", margin: "0 auto" }}>
         <ChakraProvider>
-          <Progress
-            hasStripe
-            value={data.average}
-            max={10}
-            colorScheme={getProgressColor(data.average)}
-          />
+          <Tooltip
+            title={
+              <div style={{ whiteSpace: "pre-line" }}>
+                0.1 a 3.999 - Red - Worst <br />
+                4.0 a 5.999 - Yellow - Below Average <br />
+                6.0 a 7.999 - Green - Good <br />
+                8.0 a 10.00 - Blue - Excellent
+              </div>
+            }
+            style={{
+              color: "white",
+              borderColor: "purple",
+              background: "purple",
+            }}
+          >
+            <Progress
+              hasStripe
+              value={data.average}
+              max={10}
+              colorScheme={getProgressColor(data.average)}
+            />
+          </Tooltip>
         </ChakraProvider>
         <Rate value={1} count={1} /> {data.average} / {data.ratingCount}
       </div>
@@ -295,17 +312,6 @@ const MoviePage = () => {
                     {data.gender}
                   </Td>
                 </Tr>
-                {/* <Tr>
-                  <Th>Streamings Brasil</Th>
-                  <Td
-                    style={{
-                      whiteSpace: "pre-wrap",
-                      maxWidth: "480px", // Defina um valor apropriado para o tamanho máximo
-                    }}
-                  >
-                    {data.providersBR}
-                  </Td>
-                </Tr> */}
                 <Tr>
                   <Th>Streamings USA</Th>
                   <Td
