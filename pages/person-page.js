@@ -291,10 +291,7 @@ export default function Personapi() {
                       height="360"
                     />
                     <br />
-                    {/* <TranslateProfile
-                      text={workCrew.job ? workCrew.job : "N/A"}
-                      language={"pt"}
-                    /> */}
+               
                     {workCrew.job ? workCrew.job : "N/A"}
                     <br />
                     <div>

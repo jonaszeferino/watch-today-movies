@@ -36,18 +36,22 @@ const MoviePage = () => {
 
   useEffect(() => {
     setMovieIdRequest(movieId);
+    const headers = new Headers({
+      "Content-Type": "application/json",
+      Authorization: process.env.NEXT_PUBLIC_TMDB_BEARER,
+    });
+
     Promise.all([
+      fetch(`https://api.themoviedb.org/3/movie/${movieIdRequest}`, {
+        headers,
+      }),
       fetch(
-        `https://api.themoviedb.org/3/movie/${movieIdRequest}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
-        // `https://api.themoviedb.org/3/movie/${movieIdRequest}?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
+        `https://api.themoviedb.org/3/movie/${movieIdRequest}/watch/providers`,
+        headers
       ),
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movieIdRequest}/watch/providers?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
-      ),
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movieIdRequest}/credits?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c`
-        // `https://api.themoviedb.org/3/movie/${movieIdRequest}/credits?api_key=dd10bb2fbc12dfb629a0cbaa3f47810c&language=pt-BR`
-      ),
+      fetch(`https://api.themoviedb.org/3/movie/${movieIdRequest}/credits`, {
+        headers,
+      }),
     ])
       .then(([resMovie, resProviders, resCredits]) =>
         Promise.all([resMovie.json(), resProviders.json(), resCredits.json()])
@@ -196,7 +200,7 @@ const MoviePage = () => {
             />
           </Tooltip>
         </ChakraProvider>
-        <Rate value={1} count={1} />  {data.ratingCount} / {data.average}
+        <Rate value={1} count={1} /> {data.ratingCount} / {data.average}
       </div>
       <br />
       <div
