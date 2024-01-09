@@ -164,13 +164,13 @@ const MoviePage = () => {
           <span>
             <Image
               className={styles.card_image_big}
-              src={poster || "/callback.png"} // Usar poster se estiver definido, caso contrário, usar a imagem de callback
+              src={poster || "/callback.png"}
               alt="poster"
               width="480"
               height="720"
               objectFit="contain"
-              maxHeight="100%"
-              maxWidth="100%"
+              maxHeight="720px"
+              maxWidth="480px"
             />
           </span>
         )}
@@ -261,14 +261,6 @@ const MoviePage = () => {
                     )}
                   </Td>
                 </Tr>
-                {/* <Tr>
-                  <Th>Rating Count</Th>
-                  <Td>{data.ratingCount}</Td>
-                </Tr>
-                <Tr>
-                  <Th>Average</Th>
-                  <Td>{data.average}</Td>
-                </Tr> */}
                 <Tr>
                   <Th>IMDB</Th>
                   <Td>https://www.imdb.com/title/{data.imdb}</Td>
@@ -276,22 +268,10 @@ const MoviePage = () => {
                 <Tr>
                   <Th>Country of Origin</Th>
                   <Td>{data.country}</Td>
-                  {/* <Td>
-                    <TranslationComponentCountryName
-                      text={data.country}
-                      language="pt"
-                    />
-                  </Td> */}
                 </Tr>
                 <Tr>
                   <Th>Language</Th>
                   <Td>{data.originalLanguage}</Td>
-                  {/* <Td>
-                    <TranslationComponent
-                      text={data.originalLanguage}
-                      language="pt"
-                    />
-                  </Td> */}
                 </Tr>
                 <Tr>
                   <Th>Release Date</Th>
@@ -310,7 +290,7 @@ const MoviePage = () => {
                   <Td
                     style={{
                       whiteSpace: "pre-wrap",
-                      maxWidth: "480px", // Defina um valor apropriado para o tamanho máximo
+                      maxWidth: "480px", 
                     }}
                   >
                     {data.gender}

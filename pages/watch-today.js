@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "../styles/Home.module.css";
 import ErrorPage from "./error-page";
 import Head from "next/head";
@@ -51,10 +51,10 @@ export default function Movieapi() {
     if (isError) {
       apiCall();
     }
-  }, [isError]);
+  }, [isError, apiCall]);
   const posterRef = useRef(null);
 
-  const apiCall = () => {
+  const apiCall = useCallback(() => {
     if (!isError && posterRef.current) {
       posterRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -65,9 +65,9 @@ export default function Movieapi() {
     setLikeThanks(false);
     setIsRatingSubmitted(false);
     setStarValue(0);
-
+  
     const url = `https://api.themoviedb.org/3/movie/${randomMovieId}`;
-
+  
     fetch(url, {
       headers: new Headers({
         "Content-Type": "application/json",
@@ -105,7 +105,13 @@ export default function Movieapi() {
         setError(false);
       })
       .catch((error) => setError(true), setIsLoading(false));
-  };
+  }, [isError, posterRef, randomMovieId]);
+  
+  useEffect(() => {
+    if (isError) {
+      apiCall();
+    }
+  }, [isError, apiCall]);
 
   let destino = `/movie-page?movieId=${movieData.movieId}`;
 

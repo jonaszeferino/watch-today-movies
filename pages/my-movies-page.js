@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   ChakraProvider,
   TableContainer,
@@ -32,7 +32,7 @@ const MoviePage = () => {
   const [session, setSession] = useState(null);
   const [email_user, setEmail_user] = useState();
   const [api, contextHolder] = notification.useNotification();
-  
+
   const openNotification = (placement) => {
     api.info({
       message: `Waiting ${email_user}`,
@@ -41,7 +41,8 @@ const MoviePage = () => {
       placement,
     });
   };
-  const apiGetRates = async () => {
+
+  const apiGetRates = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -55,21 +56,22 @@ const MoviePage = () => {
       );
       const responseData = await response.json();
       setData(responseData);
-      setIsLoading(false);
-      setValueEndDelete(false);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
+      setValueEndDelete(false);
     }
-  };
+  }, [email_user]);
 
   useEffect(() => {
     apiGetRates();
     setValueEndDelete(false);
     openNotification("topRight");
-  }, []);
+  }, [apiGetRates, openNotification]);
 
   const apiDeleteRates = async () => {
-    console.log("Chamou client side")
+    console.log("Chamou client side");
     setValueStartDelete(true);
     try {
       const response = await fetch("/api/v1/deleteRateRandomMovie", {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
@@ -77,7 +77,7 @@ const Profile = () => {
       getUser();
       setIsLoading(true);
     }
-  }, [emailInfo]);
+  }, [emailInfo, getUser, isSave]);x
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,17 +138,15 @@ const Profile = () => {
     }
   };
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     try {
-      const response = await fetch(
-        `/api/v1/getProfileData?email=${emailInfo}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`/api/v1/getProfileData?email=${emailInfo}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       if (response.ok) {
         const userData = await response.json();
         console.log("Dados do usuário:", userData);
@@ -167,7 +165,8 @@ const Profile = () => {
     } catch (error) {
       console.error("Erro inesperado:", error);
     }
-  };
+  }, [emailInfo, setIsLoading, setUserData, setDateString, setFavoriteActressEdit, setName, setNewUser]);
+
 
   // Verify the session
   useEffect(() => {
